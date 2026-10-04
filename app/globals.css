@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/*
+ * Thème du portfolio.
+ * Chaque variable --color-xxx crée automatiquement les classes Tailwind
+ * correspondantes : bg-xxx, text-xxx, border-xxx, ring-xxx…
+ *
+ * Règles d'accessibilité (contrastes WCAG vérifiés) :
+ * - accent (#534AB7) : uniquement en FOND (boutons, halos), jamais en texte
+ *   sur fond sombre (contraste 2,8 : insuffisant).
+ * - accent-light (#7F77DD) : liens, icônes, anneau de focus (5,2 sur le fond).
+ * - fg, fg-secondary, fg-muted : tous lisibles sur canvas et surface.
+ */
+@theme {
+  /* Fonds */
+  --color-canvas: #0d0a17; /* fond principal */
+  --color-surface: #1b1730; /* cartes, menus */
+
+  /* Bordures */
+  --color-line: #26215c; /* discrète */
+  --color-line-strong: #3c3489; /* marquée */
+
+  /* Violets d'accent */
+  --color-accent: #534ab7; /* principal */
+  --color-accent-hover: #5c53bf; /* survol des boutons (garde un bon contraste) */
+  --color-accent-light: #7f77dd; /* liens, icônes, focus */
+
+  /* Textes */
+  --color-fg: #f5f3ff; /* principal */
+  --color-fg-secondary: #afa9ec; /* secondaire */
+  --color-fg-muted: #9089c4; /* atténué */
+
+  /* Polices (chargées par next/font dans app/layout.tsx) */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-fg antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-accent text-fg;
+  }
+
+  /* Anneau de focus visible pour la navigation au clavier */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent-light;
+  }
+
+  /* Défilement doux, sauf si l'utilisateur a demandé moins d'animations */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /*
+   * Contenu animé au scroll (composant Reveal) : toujours visible
+   * si JavaScript est désactivé ou à l'impression / export PDF.
+   */
+  @media (scripting: none), print {
+    [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+}
