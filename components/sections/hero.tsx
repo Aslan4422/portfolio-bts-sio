@@ -27,7 +27,10 @@ export function Hero() {
         (en haut à gauche sur mobile, à droite ailleurs), ni derrière le titre ou le menu
         (contraste du texte vérifié de 375 à 2560 px de large) : plus petites et juste
         sous le menu sur les écrans moyens, grandes et à mi-hauteur sur les très grands
-        écrans, où le texte est loin des bords.
+        écrans, où le texte est loin des bords. Sur ces très grands écrans, la lumière de
+        gauche est à moitié visible ; celle de droite a son centre bien à l'écran (à 88 %
+        de la largeur), mais jamais à moins de 760 px du centre de la page pour rester
+        à distance de la bulle.
       */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div
@@ -39,7 +42,7 @@ export function Hero() {
         <div
           className={cn(
             haloClass,
-            "top-[14%] left-full size-[26rem] motion-safe:animate-halo-drift-alt sm:size-[32rem] md:top-[max(18%,9.5rem)] md:left-[104%] md:size-[27rem] 2xl:top-[42%] 2xl:left-full 2xl:size-[44rem]",
+            "top-[14%] left-full size-[26rem] motion-safe:animate-halo-drift-alt sm:size-[32rem] md:top-[max(18%,9.5rem)] md:left-[104%] md:size-[27rem] 2xl:top-[42%] 2xl:left-[max(88%,calc(50%_+_760px))] 2xl:size-[52rem]",
           )}
         />
       </div>
