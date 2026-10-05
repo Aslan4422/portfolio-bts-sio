@@ -11,7 +11,13 @@ export const site = {
   name: "Erhan Aslan",
   /** Titre de l'onglet du navigateur sur la page d'accueil. */
   title: "Erhan Aslan — Portfolio BTS SIO SISR",
+  /** Initiales des images d'aperçu (liens partagés) et de l'icône d'écran d'accueil. */
   initials: "EA",
+  /**
+   * Photo de la bulle du haut de page : carrée, visage au centre, sans métadonnées
+   * (ni date, ni appareil, ni position GPS). Pour la changer, voir GUIDE.md.
+   */
+  photo: { src: "/images/photo-erhan.jpg", alt: "Portrait d'Erhan Aslan" },
   roleLead,
   roleAccent,
   /** Titre complet (référencement, aperçus de liens). */

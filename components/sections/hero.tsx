@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
 import { ActiveSection } from "./active-section";
 import { CvButton } from "./cv-button";
-import { HeroMonogram } from "./hero-monogram";
+import { HeroPortrait } from "./hero-portrait";
 
 /**
  * Lumière diffuse (dégradé hero-halo, voir app/globals.css), centrée sur son point
@@ -13,7 +13,7 @@ import { HeroMonogram } from "./hero-monogram";
  */
 const haloClass = "hero-halo motion-idle absolute -translate-x-1/2 -translate-y-1/2";
 
-/** Haut de page : le titre et les deux boutons, avec le monogramme à droite. */
+/** Haut de page : le titre et les deux boutons, avec la photo à droite. */
 export function Hero() {
   return (
     <ActiveSection
@@ -23,7 +23,7 @@ export function Hero() {
     >
       {/*
         Deux lumières centrées sur les bords gauche et droit de l'écran, derrière le contenu.
-        Leur hauteur change selon la largeur pour ne jamais tomber sur la bulle « EA »
+        Leur hauteur change selon la largeur pour ne jamais tomber sur la bulle (photo)
         (en haut à gauche sur mobile, à droite ailleurs), ni derrière le titre ou le menu
         (contraste du texte vérifié de 375 à 2560 px de large) : plus petites et juste
         sous le menu sur les écrans moyens, grandes et à mi-hauteur sur les très grands
@@ -49,7 +49,7 @@ export function Hero() {
 
       <Container className="grid items-center gap-10 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:gap-12 lg:gap-16">
         {/* Sur mobile : petit, au-dessus du titre. Sur grand écran : à droite. */}
-        <HeroMonogram className="justify-self-start md:order-last md:justify-self-center motion-safe:animate-hero-visual" />
+        <HeroPortrait className="justify-self-start md:order-last md:justify-self-center motion-safe:animate-hero-visual" />
 
         <div>
           {/* Le nom n'est pas affiché, mais reste lu par les lecteurs d'écran et les moteurs de recherche. */}

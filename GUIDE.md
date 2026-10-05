@@ -46,7 +46,7 @@ app/                  Pages du site (accueil, /projets/…, mentions légales, 4
 components/           Briques d'affichage (menu, sections, cartes, formulaire…)
 content/              ★ TOUT LE CONTENU DU SITE ★ (textes, projets, parcours…)
 lib/                  Logique : validation du formulaire, référencement, adresse du site…
-public/               Fichiers publiés tels quels : CV (PDF), photos des projets
+public/               Fichiers publiés tels quels : CV (PDF), ta photo, photos des projets
 tests/                Tests automatiques
 .github/workflows/    Vérifications automatiques sur GitHub
 next.config.ts        Réglages : en-têtes de sécurité, images autorisées
@@ -129,6 +129,18 @@ Une photo sous licence Creative Commons (CC BY, CC BY-SA…) **doit** être cré
 
 > **Captures d'écran :** avant d'en ajouter une, masque toute adresse IP, nom de machine, nom de
 > domaine interne, identifiant ou information personnelle.
+
+### Changer ta photo (bulle du haut de page)
+
+1. Prépare une photo **carrée**, visage au centre, d'environ 800 × 800 pixels (plus grand alourdit
+   le site pour rien).
+2. **Retire ses informations cachées** : une photo de téléphone contient la date, le modèle du
+   téléphone et parfois **la position GPS**. Clic droit sur le fichier > *Propriétés* > onglet
+   *Détails* > *Supprimer les propriétés et les informations personnelles* > *Créer une copie en
+   supprimant toutes les propriétés possibles*.
+3. Place la copie dans `public/images/` avec **un nouveau nom** (cache de 31 jours, voir plus haut)
+   et indique ce nom dans `photo.src` de `content/site.ts`.
+4. Lance `npm test` : un test refuse la photo s'il y reste des informations cachées.
 
 ### Changer le CV
 

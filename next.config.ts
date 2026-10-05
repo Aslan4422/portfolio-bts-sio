@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import { projects } from "./content/projects";
+import { site } from "./content/site";
 
 const isDev = process.env.NODE_ENV !== "production";
 /** Déploiement de prévisualisation Vercel (barre d'outils Vercel à autoriser). */
@@ -65,8 +66,12 @@ const nextConfig: NextConfig = {
     // Les photos sont redimensionnées et servies par le site lui-même :
     // le navigateur du visiteur ne contacte jamais Unsplash.
     remotePatterns: unsplashCovers,
-    // Photos rangées dans le site (ex. public/images/projets/pare-feu-fortigate.jpg).
-    localPatterns: [{ pathname: "/images/projets/**", search: "" }],
+    // Photos rangées dans le site : celles des projets (ex. public/images/projets/pare-feu-fortigate.jpg)
+    // et la photo du haut de page.
+    localPatterns: [
+      { pathname: "/images/projets/**", search: "" },
+      { pathname: site.photo.src, search: "" },
+    ],
     formats: ["image/avif", "image/webp"],
     // Une seule qualité (celle de next/image par défaut) : pas de variantes inutiles.
     qualities: [75],

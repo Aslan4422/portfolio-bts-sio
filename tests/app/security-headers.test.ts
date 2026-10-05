@@ -5,6 +5,7 @@
  */
 import { describe, expect, it, vi } from "vitest";
 import { projects } from "@/content/projects";
+import { site } from "@/content/site";
 import { getFormspreeEndpoint } from "@/lib/contact";
 
 type Env = { NODE_ENV: string; VERCEL_ENV?: string };
@@ -113,10 +114,13 @@ describe("Optimisation des images", () => {
     expect(allowed.some((pattern) => pattern.includes("*"))).toBe(false);
   });
 
-  it("n'accepte qu'une qualité et seulement les photos rangées dans images/projets", async () => {
+  it("n'accepte qu'une qualité, les photos rangées dans images/projets et la photo du haut de page", async () => {
     const { images } = await loadConfig({ NODE_ENV: "production" });
     expect(images?.qualities).toEqual([75]);
-    expect(images?.localPatterns).toEqual([{ pathname: "/images/projets/**", search: "" }]);
+    expect(images?.localPatterns).toEqual([
+      { pathname: "/images/projets/**", search: "" },
+      { pathname: site.photo.src, search: "" },
+    ]);
     expect(images?.minimumCacheTTL).toBe(2_678_400);
   });
 });

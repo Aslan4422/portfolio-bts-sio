@@ -44,6 +44,13 @@ describe("Aucune donnée sensible dans les textes publiés", () => {
   it("une localisation sans adresse précise (ni numéro, ni code postal)", () => {
     expect(site.location).not.toMatch(/\d/);
   });
+
+  it("une photo personnelle sans métadonnées (ni date, ni appareil, ni position GPS)", () => {
+    const photo = fs.readFileSync(path.join(process.cwd(), "public", site.photo.src));
+    // Ces informations sont rangées dans des blocs qui commencent par « Exif » (EXIF) ou par l'adresse d'Adobe (XMP).
+    expect(photo.includes("Exif\0\0")).toBe(false);
+    expect(photo.includes("ns.adobe.com/xap")).toBe(false);
+  });
 });
 
 describe("Identité et contact", () => {

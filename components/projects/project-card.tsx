@@ -82,7 +82,9 @@ export function ProjectCard({ project, onOpen }: ProjectCardProps) {
           <TechList tech={project.tech} />
         </div>
 
-        <div aria-hidden="true" className="mt-auto pt-6">
+        {/* pointer-events-none : la flèche, déplacée au survol, passerait sinon
+            au-dessus du lien étiré et bloquerait le clic. */}
+        <div aria-hidden="true" className="pointer-events-none mt-auto pt-6">
           <div className="flex items-center gap-1.5 border-t border-line pt-4 text-sm font-medium text-accent-light">
             Voir le détail
             <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />

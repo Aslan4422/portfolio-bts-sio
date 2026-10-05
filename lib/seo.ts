@@ -61,6 +61,7 @@ export function buildPersonJsonLd(siteUrl: string) {
     "@type": "Person",
     name: site.name,
     url: siteUrl,
+    image: new URL(site.photo.src, siteUrl).toString(),
     jobTitle: "Étudiant en BTS SIO option SISR",
     description: site.description,
     email: `mailto:${site.contact.email}`,

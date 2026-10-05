@@ -84,6 +84,7 @@ describe("Fiche « Person » pour Google (données structurées)", () => {
       "@type": "Person",
       name: site.name,
       url: "https://erhan-aslan.fr/",
+      image: `https://erhan-aslan.fr${site.photo.src}`,
       sameAs: [site.contact.linkedin, site.contact.github],
     });
   });

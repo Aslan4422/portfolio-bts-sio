@@ -109,9 +109,11 @@ export function VeilleSection() {
                         </h4>
                         <p className="mt-0.5 text-sm text-accent-light">{source.category}</p>
                       </div>
+                      {/* pointer-events-none : la flèche, déplacée au survol, passerait sinon
+                          au-dessus du lien étiré et bloquerait le clic. */}
                       <ArrowUpRight
                         aria-hidden="true"
-                        className="size-5 shrink-0 text-fg-muted transition-[color,translate] duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-light"
+                        className="pointer-events-none size-5 shrink-0 text-fg-muted transition-[color,translate] duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-light"
                       />
                     </div>
                     <p className="mt-2 text-sm leading-relaxed text-fg-secondary">{source.description}</p>
