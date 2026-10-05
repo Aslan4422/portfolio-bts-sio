@@ -2,6 +2,8 @@
 
 [![Vérifications](https://github.com/Aslan4422/portfolio-bts-sio/actions/workflows/verifications.yml/badge.svg)](https://github.com/Aslan4422/portfolio-bts-sio/actions/workflows/verifications.yml)
 
+**Site en ligne : [erhan-aslan.vercel.app](https://erhan-aslan.vercel.app)**
+
 Portfolio professionnel d'Erhan Aslan, étudiant en **BTS SIO option SISR** :
 administration systèmes et réseaux, Active Directory, durcissement selon l'ANSSI,
 supervision Wazuh et cybersécurité défensive.
