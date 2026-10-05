@@ -78,8 +78,14 @@ describe("Menu", () => {
 });
 
 describe("Parcours", () => {
-  it("a exactement une étape « en cours »", () => {
+  it("a exactement une étape « en cours », placée à la fin de la frise", () => {
     expect(timeline.filter((item) => item.current)).toHaveLength(1);
+    expect(timeline.at(-1)?.current).toBe(true);
+  });
+
+  it("n'affiche pas deux fois la même période (dates précises au mois)", () => {
+    const periods = timeline.map((item) => item.period);
+    expect(new Set(periods).size).toBe(periods.length);
   });
 
   it("ne relie que des projets qui existent", () => {
