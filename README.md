@@ -39,3 +39,9 @@ Photos d'illustration : Unsplash et Flickr (auteurs et licences cités dans chaq
 et dans la page *Mentions légales*). Police Geist (SIL Open Font License), icônes Lucide (ISC).
 
 © Erhan Aslan — tous droits réservés.
+
+
+
+TEST:
+-changer image illustration stormshield (enlever fortinet)
+-frise chronologique date à améliorer
