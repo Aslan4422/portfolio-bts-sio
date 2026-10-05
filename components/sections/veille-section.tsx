@@ -76,7 +76,11 @@ export function VeilleSection() {
         <GroupTitle>Mes sources</GroupTitle>
         <ul className="mt-6 grid gap-4 lg:grid-cols-2">
           {veilleSources.map((source, index) => (
-            <li key={source.name}>
+            // Nombre impair de sources : la dernière, seule sur sa ligne, est centrée (même largeur que les autres).
+            <li
+              key={source.name}
+              className="lg:last:odd:col-span-2 lg:last:odd:mx-auto lg:last:odd:w-[calc(50%-0.5rem)]"
+            >
               <Reveal delay={(index % 2) * 0.06} className="h-full">
                 <article
                   className={cn(
