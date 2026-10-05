@@ -96,35 +96,24 @@
 }
 
 /*
- * Lumière du haut de page, dessinée comme une vraie source lumineuse :
- * - un petit cœur plus clair (premier dégradé) ;
- * - une diffusion verte dont l'intensité chute vite près du centre puis s'étire
- *   en une longue traîne douce (courbe en 1/(1+d²), sur 10 paliers), pour une
- *   lumière nette, sans bord visible ni effet de brouillard.
+ * Lumière du haut de page : une lueur très douce et large, à peine plus claire
+ * que le fond (comme sur le site modèle), sans point lumineux au centre.
+ * L'intensité décroît lentement puis s'efface (courbe en cloche, sur 8 paliers),
+ * pour qu'aucun bord ne soit visible.
  */
 @utility hero-halo {
   border-radius: 9999px;
-  background-image:
-    radial-gradient(
-      closest-side,
-      rgb(150 235 200 / 0.32) 0%,
-      rgb(150 235 200 / 0.12) 12%,
-      rgb(150 235 200 / 0) 26%
-    ),
-    radial-gradient(
-      closest-side,
-      rgb(56 196 146 / 0.8) 0%,
-      rgb(56 196 146 / 0.68) 10%,
-      rgb(56 196 146 / 0.47) 20%,
-      rgb(56 196 146 / 0.3) 30%,
-      rgb(56 196 146 / 0.19) 40%,
-      rgb(56 196 146 / 0.12) 50%,
-      rgb(56 196 146 / 0.075) 60%,
-      rgb(56 196 146 / 0.046) 70%,
-      rgb(56 196 146 / 0.026) 80%,
-      rgb(56 196 146 / 0.011) 90%,
-      rgb(56 196 146 / 0) 100%
-    );
+  background-image: radial-gradient(
+    closest-side,
+    rgb(40 150 112 / 0.34) 0%,
+    rgb(40 150 112 / 0.32) 15%,
+    rgb(40 150 112 / 0.27) 30%,
+    rgb(40 150 112 / 0.2) 45%,
+    rgb(40 150 112 / 0.12) 60%,
+    rgb(40 150 112 / 0.06) 75%,
+    rgb(40 150 112 / 0.02) 90%,
+    rgb(40 150 112 / 0) 100%
+  );
 }
 
 @layer base {

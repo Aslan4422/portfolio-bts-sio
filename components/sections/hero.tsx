@@ -36,7 +36,7 @@ export function Hero() {
         <div
           className={cn(
             haloClass,
-            "top-[80%] left-0 size-[28rem] motion-safe:animate-halo-drift sm:size-[34rem] md:top-[max(18%,9.5rem)] md:size-[27rem] 2xl:top-[36%] 2xl:size-[56rem]",
+            "top-[80%] left-0 size-[28rem] motion-safe:animate-halo-drift sm:size-[34rem] md:top-[max(18%,9.5rem)] md:size-[27rem] 2xl:top-[36%] 2xl:size-[64rem]",
           )}
         />
         <div
