@@ -3,30 +3,44 @@ import { site } from "@/content/site";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
+import { ActiveSection } from "./active-section";
 import { CvButton } from "./cv-button";
 import { HeroMonogram } from "./hero-monogram";
 
-/** Halo de lumière diffus : un dégradé circulaire qui s'efface vers les bords (aucun filtre de flou). */
-const haloClass =
-  "absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(36_150_112/0.6),rgb(36_150_112/0.22)_55%,transparent)]";
+/**
+ * Lumière diffuse (dégradé hero-halo, voir app/globals.css), centrée sur son point
+ * d'ancrage, avec une très légère dérive tant que le visiteur est actif.
+ */
+const haloClass = "hero-halo motion-idle absolute -translate-x-1/2 -translate-y-1/2";
 
 /** Haut de page : le titre et les deux boutons, avec le monogramme à droite. */
 export function Hero() {
   return (
-    <section
+    <ActiveSection
       id="accueil"
       aria-labelledby="hero-title"
       className="relative isolate flex min-h-[100svh] items-center overflow-hidden pt-24 pb-16"
     >
       {/*
-        Deux halos de lumière centrés sur les bords gauche et droit de l'écran, derrière le contenu.
+        Deux lumières centrées sur les bords gauche et droit de l'écran, derrière le contenu.
         Leur hauteur change selon la largeur pour ne jamais tomber sur la bulle « EA »
-        (en haut à gauche sur mobile, à droite ailleurs).
+        (en haut à gauche sur mobile, à droite ailleurs), ni derrière le titre ou le menu
+        (contraste du texte vérifié de 375 à 2560 px de large) : plus petites et juste
+        sous le menu sur les écrans moyens, grandes et à mi-hauteur sur les très grands
+        écrans, où le texte est loin des bords.
       */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className={cn(haloClass, "top-[80%] left-0 size-[28rem] sm:size-[42rem] md:top-[36%] lg:size-[56rem]")} />
         <div
-          className={cn(haloClass, "top-[14%] left-full size-[26rem] sm:size-[38rem] xl:size-[44rem] 2xl:top-[42%]")}
+          className={cn(
+            haloClass,
+            "top-[80%] left-0 size-[28rem] motion-safe:animate-halo-drift sm:size-[34rem] md:top-[max(18%,9.5rem)] md:size-[27rem] 2xl:top-[36%] 2xl:size-[56rem]",
+          )}
+        />
+        <div
+          className={cn(
+            haloClass,
+            "top-[14%] left-full size-[26rem] motion-safe:animate-halo-drift-alt sm:size-[32rem] md:top-[max(18%,9.5rem)] md:left-[104%] md:size-[27rem] 2xl:top-[42%] 2xl:left-full 2xl:size-[44rem]",
+          )}
         />
       </div>
 
@@ -53,6 +67,6 @@ export function Hero() {
           </div>
         </div>
       </Container>
-    </section>
+    </ActiveSection>
   );
 }

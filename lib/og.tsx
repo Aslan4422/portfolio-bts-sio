@@ -16,12 +16,20 @@ export const OG_SIZE = { width: 1200, height: 630 };
  * et LinkedIn, Discord… affichent la nouvelle image au lieu de l'ancienne gardée en mémoire.
  * (Les changements de textes dans content/ sont pris en compte automatiquement.)
  */
-export const OG_DESIGN_VERSION = 1;
+export const OG_DESIGN_VERSION = 2;
 
-/** Textes de l'image d'aperçu de la page d'accueil. */
+/*
+ * LinkedIn n'affiche jamais l'image telle quelle : il la recompresse en JPEG et en
+ * montre souvent une petite version (160 à 800 px de large). Le dessin est donc
+ * volontairement « gros et simple » : peu de texte, aucun texte sous 34 px,
+ * et pas de lumière derrière le texte, pour rester lisible même en miniature.
+ */
+
+/** Textes de l'image d'aperçu de la page d'accueil (titre raccourci pour rester lisible). */
 export const ogHomeText = {
-  eyebrow: "Portfolio · BTS SIO option SISR",
-  keywords: "Active Directory · Durcissement ANSSI · Supervision Wazuh",
+  eyebrow: "Portfolio · BTS SIO SISR",
+  headlineLead: "Systèmes, réseaux",
+  headlineAccent: "et cybersécurité",
 };
 
 /**
@@ -30,14 +38,13 @@ export const ogHomeText = {
  */
 export function projectOgContent(project: Project) {
   return {
-    eyebrow: `${site.name} · Portfolio BTS SIO SISR`,
+    eyebrow: `${site.name} · BTS SIO SISR`,
     domains: projectDomains
       .filter((domain) => project.domains.includes(domain.id))
       .map((domain) => domain.label)
       .join(" · "),
     title: project.title,
     pitch: project.pitch,
-    tools: project.tech.slice(0, 4),
   };
 }
 
@@ -78,7 +85,10 @@ export async function loadOgFonts(): Promise<OgFont[] | undefined> {
   }
 }
 
-/** Fond commun : dégradé vert du site, deux halos de lumière et un liseré doré en bas. */
+/**
+ * Fond commun : dégradé vert du site, deux lumières dans les coins (loin du texte,
+ * car un dégradé derrière les lettres se dégrade à la recompression) et un liseré doré en bas.
+ */
 export function OgFrame({ children }: { children: ReactNode }) {
   return (
     <div
@@ -96,19 +106,19 @@ export function OgFrame({ children }: { children: ReactNode }) {
       <div
         style={{
           position: "absolute",
-          left: -330,
-          top: -170,
+          left: -520,
+          top: -470,
           width: 760,
           height: 760,
           borderRadius: 9999,
-          backgroundImage: "radial-gradient(circle, rgba(36,150,112,0.55) 0%, rgba(36,150,112,0.2) 38%, rgba(36,150,112,0) 70%)",
+          backgroundImage: "radial-gradient(circle, rgba(36,150,112,0.4) 0%, rgba(36,150,112,0.14) 38%, rgba(36,150,112,0) 70%)",
         }}
       />
       <div
         style={{
           position: "absolute",
-          right: -300,
-          bottom: -260,
+          right: -390,
+          bottom: -400,
           width: 720,
           height: 720,
           borderRadius: 9999,
@@ -135,8 +145,8 @@ export function OgFrame({ children }: { children: ReactNode }) {
 /** Ligne du haut : petite barre dorée + nom du site. */
 export function OgEyebrow({ children }: { children: ReactNode }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 18, fontSize: 28, color: ogColors.fgSecondary }}>
-      <div style={{ width: 56, height: 6, borderRadius: 3, backgroundColor: ogColors.accent }} />
+    <div style={{ display: "flex", alignItems: "center", gap: 20, fontSize: 34, color: ogColors.fgSecondary }}>
+      <div style={{ width: 64, height: 7, borderRadius: 4, backgroundColor: ogColors.accent }} />
       {children}
     </div>
   );

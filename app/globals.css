@@ -49,8 +49,8 @@
    * Forme du monogramme qui ondule lentement (classe animate-blob-morph) :
    * les bords se gonflent et se creusent légèrement, en boucle sur 10 s.
    * Les deux silhouettes doivent rester proches pour un mouvement discret.
-   * En pause par défaut : components/sections/hero-monogram.tsx ne la lance
-   * que pendant que le visiteur est actif sur la page.
+   * En pause par défaut : lancée seulement pendant que le visiteur est actif
+   * (voir components/sections/active-section.tsx).
    */
   --animate-blob-morph: blob-morph 10s ease-in-out infinite paused;
   @keyframes blob-morph {
@@ -60,6 +60,24 @@
     }
     50% {
       border-radius: 33% 58% 67% 42% / 50% 58% 33% 58%;
+    }
+  }
+
+  /*
+   * Lumières du haut de page (classes animate-halo-drift et animate-halo-drift-alt) :
+   * très légère dérive et « respiration », sur 16 et 21 s, en pause par défaut
+   * (lancées seulement quand le visiteur est actif, comme la bulle).
+   */
+  --animate-halo-drift: halo-drift 16s ease-in-out infinite alternate paused;
+  --animate-halo-drift-alt: halo-drift 21s ease-in-out -8s infinite alternate-reverse paused;
+  @keyframes halo-drift {
+    from {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.85;
+    }
+    to {
+      transform: translate(18px, -14px) scale(1.06);
+      opacity: 1;
     }
   }
 
@@ -75,6 +93,38 @@
       transform: none;
     }
   }
+}
+
+/*
+ * Lumière du haut de page, dessinée comme une vraie source lumineuse :
+ * - un petit cœur plus clair (premier dégradé) ;
+ * - une diffusion verte dont l'intensité chute vite près du centre puis s'étire
+ *   en une longue traîne douce (courbe en 1/(1+d²), sur 10 paliers), pour une
+ *   lumière nette, sans bord visible ni effet de brouillard.
+ */
+@utility hero-halo {
+  border-radius: 9999px;
+  background-image:
+    radial-gradient(
+      closest-side,
+      rgb(150 235 200 / 0.32) 0%,
+      rgb(150 235 200 / 0.12) 12%,
+      rgb(150 235 200 / 0) 26%
+    ),
+    radial-gradient(
+      closest-side,
+      rgb(56 196 146 / 0.8) 0%,
+      rgb(56 196 146 / 0.68) 10%,
+      rgb(56 196 146 / 0.47) 20%,
+      rgb(56 196 146 / 0.3) 30%,
+      rgb(56 196 146 / 0.19) 40%,
+      rgb(56 196 146 / 0.12) 50%,
+      rgb(56 196 146 / 0.075) 60%,
+      rgb(56 196 146 / 0.046) 70%,
+      rgb(56 196 146 / 0.026) 80%,
+      rgb(56 196 146 / 0.011) 90%,
+      rgb(56 196 146 / 0) 100%
+    );
 }
 
 @layer base {
@@ -165,6 +215,16 @@
       transform: none !important;
     }
   }
+}
+
+/*
+ * Animations « à l'activité » (bulle EA, lumières du haut de page) : en pause par
+ * défaut, elles ne tournent que tant que la section porte l'attribut data-active,
+ * posé pendant que le visiteur est actif (voir components/sections/active-section.tsx).
+ * (Hors de @layer pour passer avant les classes utilitaires animate-….)
+ */
+[data-active] .motion-idle {
+  animation-play-state: running;
 }
 
 /*

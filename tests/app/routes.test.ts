@@ -80,13 +80,12 @@ describe("Version des images d'aperçu des projets", () => {
     expect(new Set(urls).size).toBe(projects.length);
   });
 
-  it("la version change dès qu'un texte affiché sur l'image change (titre, accroche, outils, onglet)", async () => {
+  it("la version change dès qu'un texte affiché sur l'image change (titre, accroche, onglet)", async () => {
     const project = projects[0];
     const before = await ogUrl(project.slug);
     const changes: ((p: Project) => void)[] = [
       (p) => (p.title += " !"),
       (p) => (p.pitch += " !"),
-      (p) => (p.tech = [`${p.tech[0]} !`, ...p.tech.slice(1)]),
       (p) => (p.domains = p.domains.includes("cybersecurite") ? ["systemes-reseaux"] : ["cybersecurite"]),
     ];
     for (const change of changes) {
@@ -101,15 +100,16 @@ describe("Version des images d'aperçu des projets", () => {
     expect(await ogUrl(project.slug)).toBe(before);
   });
 
-  it("la version ne change pas pour un texte absent de l'image (ex. le contexte de la fiche)", async () => {
+  it("la version ne change pas pour un texte absent de l'image (contexte de la fiche, outils)", async () => {
     const project = projects[0];
     const before = await ogUrl(project.slug);
-    const saved = project.context;
+    const saved = structuredClone(project);
     project.context += " (modifié)";
+    project.tech = [`${project.tech[0]} !`, ...project.tech.slice(1)];
     try {
       expect(await ogUrl(project.slug)).toBe(before);
     } finally {
-      project.context = saved;
+      Object.assign(project, saved);
     }
   });
 });
