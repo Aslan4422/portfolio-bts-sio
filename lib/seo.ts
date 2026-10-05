@@ -43,7 +43,7 @@ export const homeOpenGraph = {
       site.name,
       site.roleLead,
       site.roleAccent,
-      site.initials,
+      site.photo.src,
       ogHomeText,
     ]),
   ],

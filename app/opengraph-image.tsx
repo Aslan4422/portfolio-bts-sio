@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/content/site";
-import { loadOgFonts, OG_SIZE, ogColors, OgEyebrow, OgFrame, ogHomeText, OgMonogram } from "@/lib/og";
+import { loadOgFonts, loadOgPhoto, OG_SIZE, ogColors, OgEyebrow, OgFrame, ogHomeText, OgPortrait } from "@/lib/og";
 
 /*
  * Image d'aperçu du site (lien de la page d'accueil partagé).
@@ -15,7 +15,7 @@ export const contentType = "image/png";
 const { eyebrow, headlineLead, headlineAccent } = ogHomeText;
 
 export default async function OpenGraphImage() {
-  const fonts = await loadOgFonts();
+  const [fonts, photo] = await Promise.all([loadOgFonts(), loadOgPhoto()]);
 
   return new ImageResponse(
     (
@@ -42,7 +42,7 @@ export default async function OpenGraphImage() {
               <span style={{ color: ogColors.accentLight }}>{headlineAccent}</span>
             </div>
           </div>
-          <OgMonogram size={270} />
+          <OgPortrait src={photo} size={320} />
         </div>
       </OgFrame>
     ),

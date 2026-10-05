@@ -3,6 +3,8 @@
  * Elles sont dessinées au moment de la génération du site par next/og,
  * avec les couleurs du thème (voir app/globals.css).
  */
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import type { ReactNode } from "react";
 import { projectDomains } from "@/content/projects";
 import { site } from "@/content/site";
@@ -16,7 +18,7 @@ export const OG_SIZE = { width: 1200, height: 630 };
  * et LinkedIn, Discord… affichent la nouvelle image au lieu de l'ancienne gardée en mémoire.
  * (Les changements de textes dans content/ sont pris en compte automatiquement.)
  */
-export const OG_DESIGN_VERSION = 2;
+export const OG_DESIGN_VERSION = 3;
 
 /*
  * LinkedIn n'affiche jamais l'image telle quelle : il la recompresse en JPEG et en
@@ -152,6 +154,34 @@ export function OgEyebrow({ children }: { children: ReactNode }) {
   );
 }
 
+/** Forme arrondie de la bulle du haut du site (première étape de son animation). */
+const bubbleRadius = "58% 42% 33% 67% / 58% 33% 67% 42%";
+
+/**
+ * Ta photo (celle de la bulle du haut de page), lue dans public/ au moment de la
+ * génération du site et intégrée directement dans l'image d'aperçu.
+ */
+export async function loadOgPhoto(): Promise<string> {
+  const file = await readFile(path.join(process.cwd(), "public", site.photo.src));
+  const type = /\.png$/i.test(site.photo.src) ? "image/png" : "image/jpeg";
+  return `data:${type};base64,${file.toString("base64")}`;
+}
+
+/** Photo dans la forme arrondie de la bulle, comme en haut du site. */
+export function OgPortrait({ src, size }: { src: string; size: number }) {
+  return (
+    // next/og ne sait dessiner que des balises <img> classiques (pas le composant Image de Next.js).
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      alt=""
+      width={size}
+      height={size}
+      style={{ objectFit: "cover", border: `3px solid ${ogColors.lineStrong}`, borderRadius: bubbleRadius }}
+    />
+  );
+}
+
 /** Monogramme « EA » dans sa forme arrondie, comme en haut du site. */
 export function OgMonogram({ size }: { size: number }) {
   return (
@@ -164,7 +194,7 @@ export function OgMonogram({ size }: { size: number }) {
         justifyContent: "center",
         backgroundColor: ogColors.surface,
         border: `2px solid ${ogColors.lineStrong}`,
-        borderRadius: "58% 42% 33% 67% / 58% 33% 67% 42%",
+        borderRadius: bubbleRadius,
         color: ogColors.accentLight,
         fontSize: Math.round(size * 0.34),
         fontWeight: 600,

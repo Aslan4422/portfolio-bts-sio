@@ -157,9 +157,10 @@ et « Demander mon CV » (vers le formulaire) s'il est absent.
 ### Images d'aperçu (partage sur LinkedIn, Discord…)
 
 Elles sont dessinées automatiquement à partir des textes (`app/opengraph-image.tsx` pour l'accueil,
-`app/projets/[slug]/opengraph-image.tsx` pour chaque projet). Si tu modifies leur **dessin**
-(couleurs, disposition), augmente `OG_DESIGN_VERSION` dans `lib/og.tsx` (1 → 2) pour que les réseaux
-sociaux rechargent la nouvelle image. Les changements de textes sont pris en compte tout seuls.
+`app/projets/[slug]/opengraph-image.tsx` pour chaque projet) ; celle de l'accueil reprend ta photo.
+Si tu modifies leur **dessin** (couleurs, disposition), augmente `OG_DESIGN_VERSION` dans `lib/og.tsx`
+(3 → 4) pour que les réseaux sociaux rechargent la nouvelle image. Les changements de textes et de nom
+de photo sont pris en compte tout seuls.
 
 ---
 
