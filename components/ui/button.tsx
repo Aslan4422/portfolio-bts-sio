@@ -3,7 +3,7 @@ import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
 type Variant = "primary" | "secondary" | "ghost";
-type Size = "md" | "lg";
+type Size = "sm" | "md" | "lg";
 
 type StyleOptions = {
   variant?: Variant;
@@ -11,19 +11,20 @@ type StyleOptions = {
   className?: string;
 };
 
-// La bordure transparente devient visible en mode « contraste élevé » de Windows.
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-lg border border-transparent font-medium whitespace-nowrap transition-colors duration-200 disabled:pointer-events-none disabled:opacity-60 [&_svg]:size-4 [&_svg]:shrink-0";
+  "inline-flex items-center justify-center gap-2 rounded-lg border font-medium whitespace-nowrap transition-colors duration-200 disabled:pointer-events-none disabled:opacity-60 [&_svg]:size-4 [&_svg]:shrink-0";
 
+// Les bordures transparentes deviennent visibles en mode « contraste élevé » de Windows.
 const variants: Record<Variant, string> = {
   primary:
-    "bg-accent text-fg shadow-lg shadow-accent/25 ring-1 ring-inset ring-accent-light/30 hover:bg-accent-hover",
+    "border-transparent bg-accent text-on-accent shadow-lg shadow-accent/20 ring-1 ring-inset ring-accent-light/40 hover:bg-accent-hover",
   secondary:
     "border-line-strong bg-surface/60 text-fg hover:border-accent-light/70 hover:bg-surface",
-  ghost: "text-fg-secondary hover:bg-surface/70 hover:text-fg",
+  ghost: "border-transparent text-fg-secondary hover:bg-surface/70 hover:text-fg",
 };
 
 const sizes: Record<Size, string> = {
+  sm: "h-9 px-3.5 text-sm",
   md: "h-10 px-4 text-sm",
   lg: "h-12 px-6 text-[0.95rem]",
 };

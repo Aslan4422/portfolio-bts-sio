@@ -1,44 +1,118 @@
 @import "tailwindcss";
 
 /*
- * Thème du portfolio.
+ * Thème du portfolio : vert forêt profond, ton sur ton, accents or doux.
+ * (Inspiré du projet « Al-Ma'rifa » : rendu feutré, calme, sans effet néon.)
  * Chaque variable --color-xxx crée automatiquement les classes Tailwind
  * correspondantes : bg-xxx, text-xxx, border-xxx, ring-xxx…
  *
- * Règles d'accessibilité (contrastes WCAG vérifiés) :
- * - accent (#534AB7) : uniquement en FOND (boutons, halos), jamais en texte
- *   sur fond sombre (contraste 2,8 : insuffisant).
- * - accent-light (#7F77DD) : liens, icônes, anneau de focus (5,2 sur le fond).
- * - fg, fg-secondary, fg-muted : tous lisibles sur canvas et surface.
+ * Règles d'accessibilité (contrastes WCAG vérifiés, minimum 4,5 pour le texte) :
+ * - accent (or) : FOND des boutons principaux, avec le texte on-accent
+ *   (vert très sombre) dessus (7,3). Jamais de texte ivoire sur l'or (1,9).
+ * - accent-light (or clair) : liens, icônes, puces numérotées, focus
+ *   (7,4 sur le fond, 5,8 sur une carte).
+ * - fg (ivoire), fg-secondary (menthe pâle), fg-muted (gris-vert) :
+ *   tous lisibles sur canvas, canvas-light et surface
+ *   (fg-muted : 5,8 sur une carte, 5,9 au point le plus clair du dégradé).
  */
 @theme {
   /* Fonds */
-  --color-canvas: #0d0a17; /* fond principal */
-  --color-surface: #1b1730; /* cartes, menus */
+  --color-canvas: #043a2c; /* fond principal — vert sapin */
+  --color-canvas-light: #064b38; /* haut des dégradés, halos */
+  --color-canvas-deep: #032e23; /* bas des dégradés, zones encastrées */
+  --color-surface: #114c3b; /* cartes, blocs — ton sur ton */
 
   /* Bordures */
-  --color-line: #26215c; /* discrète */
-  --color-line-strong: #3c3489; /* marquée */
+  --color-line: #1d5d4c; /* fine et douce */
+  --color-line-strong: #2b7561; /* marquée, survol des cartes */
 
-  /* Violets d'accent */
-  --color-accent: #534ab7; /* principal */
-  --color-accent-hover: #5c53bf; /* survol des boutons (garde un bon contraste) */
-  --color-accent-light: #7f77dd; /* liens, icônes, focus */
+  /* Or d'accent (boutons principaux, badges actifs, puces) */
+  --color-accent: #d4af37; /* or doux — fond des boutons */
+  --color-accent-hover: #dfbe52; /* survol des boutons */
+  --color-accent-light: #e2c35e; /* or clair — liens, icônes, focus */
+  --color-on-accent: #062a20; /* texte posé sur l'or */
 
   /* Textes */
-  --color-fg: #f5f3ff; /* principal */
-  --color-fg-secondary: #afa9ec; /* secondaire */
-  --color-fg-muted: #9089c4; /* atténué */
+  --color-fg: #f5f1e6; /* principal — ivoire */
+  --color-fg-secondary: #b5d9ca; /* sous-titres — menthe pâle */
+  --color-fg-muted: #b0ccbd; /* métadonnées — gris-vert doux */
+
+  /* Formulaires */
+  --color-field-line: #5aa28b; /* contour des champs (contraste ≥ 3 exigé pour les repérer) */
+  --color-danger: #ffb4a6; /* messages d'erreur — corail doux (5,8 sur une carte) */
 
   /* Polices (chargées par next/font dans app/layout.tsx) */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  /*
+   * Forme du monogramme qui ondule lentement (classe animate-blob-morph) :
+   * les bords se gonflent et se creusent légèrement, en boucle sur 10 s.
+   * Les deux silhouettes doivent rester proches pour un mouvement discret.
+   * En pause par défaut : components/sections/hero-monogram.tsx ne la lance
+   * que pendant que le visiteur est actif sur la page.
+   */
+  --animate-blob-morph: blob-morph 10s ease-in-out infinite paused;
+  @keyframes blob-morph {
+    0%,
+    100% {
+      border-radius: 58% 42% 33% 67% / 58% 33% 67% 42%;
+    }
+    50% {
+      border-radius: 33% 58% 67% 42% / 50% 58% 33% 58%;
+    }
+  }
+
+  /* Apparition douce du monogramme du haut de page (classe animate-hero-visual) */
+  --animate-hero-visual: hero-visual 0.9s cubic-bezier(0.21, 0.47, 0.32, 0.98) 0.15s both;
+  @keyframes hero-visual {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 }
 
 @layer base {
   html {
     color-scheme: dark;
     -webkit-text-size-adjust: 100%;
+    /* Les ancres du menu (#projets…) s'arrêtent sous le menu fixe. */
+    scroll-padding-top: 5rem;
+    /* Réserve la place de la barre de défilement : pas de décalage quand elle disparaît. */
+    scrollbar-gutter: stable;
+  }
+
+  /* Fiche projet ouverte (fenêtre <dialog>) : la page derrière ne défile plus. */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  /* Apparition douce de la fiche projet et de son fond flouté. */
+  @media (prefers-reduced-motion: no-preference) {
+    .project-dialog[open] {
+      animation: dialog-in 0.25s cubic-bezier(0.21, 0.47, 0.32, 0.98);
+    }
+    .project-dialog[open]::backdrop {
+      animation: backdrop-in 0.25s ease-out;
+    }
+  }
+
+  @keyframes dialog-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+  }
+
+  @keyframes backdrop-in {
+    from {
+      opacity: 0;
+    }
   }
 
   body {
@@ -46,8 +120,27 @@
     text-rendering: optimizeLegibility;
   }
 
+  /*
+   * Dégradé de fond fixé à l'écran : plus clair en haut à gauche,
+   * plus profond en bas à droite. Le point le plus clair reste canvas-light,
+   * pour que tous les textes gardent un bon contraste.
+   * (Calque séparé plutôt que background-attachment: fixed → défilement fluide.)
+   */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 100vh;
+    height: 100lvh;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 70% 55% at 10% 0%, var(--color-canvas-light), transparent 75%),
+      linear-gradient(160deg, var(--color-canvas-light) 0%, var(--color-canvas) 45%, var(--color-canvas-deep) 100%);
+  }
+
   ::selection {
-    @apply bg-accent text-fg;
+    @apply bg-accent text-on-accent;
   }
 
   /* Anneau de focus visible pour la navigation au clavier */
@@ -72,4 +165,17 @@
       transform: none !important;
     }
   }
+}
+
+/*
+ * Lien partagé /projets/<slug> : la fiche est affichée dès la page générée à l'avance,
+ * avant que JavaScript la transforme en vraie fenêtre « modale ». On lui donne la même
+ * apparence : centrée, au-dessus du menu, avec le fond assombri.
+ * (Hors de @layer pour passer avant les classes utilitaires, ex. shadow-2xl.)
+ */
+.project-dialog[open]:not(:modal) {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  box-shadow: 0 0 0 100vmax rgb(3 46 35 / 0.55);
 }
