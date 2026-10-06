@@ -44,5 +44,5 @@ et dans la page *Mentions légales*). Police Geist (SIL Open Font License), icô
 
 TEST:
 -changer image illustration stormshield (enlever fortinet)
--frise chronologique date à améliorer
+-veille source/top 3 à modifier en fonction du devoir source de m fangnon
 -verifier les mails
