@@ -37,9 +37,6 @@ export const veilleSources: VeilleSource[] = [
   {
     name: "OWASP API Security Top 10",
     publisher: "OWASP Foundation",
-    frequency: "Pluriannuelle pour les éditions majeures, mises à jour continues sur GitHub",
-    interest:
-      "Organisation à but non lucratif : promouvoir les standards ouverts et sensibiliser, sans visée commerciale.",
     description:
       "Référence mondiale qui classe les 10 failles critiques propres aux API, avec les scénarios d'attaque rencontrés en production et les règles de conception défensives à appliquer.",
     icon: "plug",
@@ -48,9 +45,6 @@ export const veilleSources: VeilleSource[] = [
   {
     name: "Recommandations de la CNIL sur les API",
     publisher: "CNIL (France)",
-    frequency: "Périodique : textes réglementaires, délibérations et guides d'application",
-    interest:
-      "Autorité administrative indépendante : encadrer juridiquement et techniquement les échanges de données pour faire respecter le RGPD.",
     description:
       "Source institutionnelle française qui fixe les obligations concrètes de sécurité des API : gestion des clés et jetons d'authentification, journalisation des appels, limitation du débit et gestion des habilitations.",
     icon: "scale",
@@ -59,9 +53,6 @@ export const veilleSources: VeilleSource[] = [
   {
     name: "CERT-FR — Avis et alertes de sécurité",
     publisher: "ANSSI (France)",
-    frequency: "Quotidienne à hebdomadaire, selon l'actualité des menaces",
-    interest:
-      "Mission régalienne de cyberdéfense : alerter l'écosystème français sur les vulnérabilités actives et prévenir les compromissions critiques.",
     description:
       "Source nationale de référence qui signale les vulnérabilités critiques visant des infrastructures réelles (passerelles d'API, reverse proxies), avec les correctifs officiels et les mesures de contournement d'urgence.",
     icon: "siren",
@@ -70,9 +61,6 @@ export const veilleSources: VeilleSource[] = [
   {
     name: "CISA — Known Exploited Vulnerabilities (KEV)",
     publisher: "CISA (États-Unis)",
-    frequency: "Continue : ajout dès qu'une exploitation réelle est constatée",
-    interest:
-      "Directive fédérale : obliger les administrations américaines à corriger, dans des délais imposés, les failles activement exploitées.",
     description:
       "Base opérationnelle qui laisse la théorie de côté : elle ne recense que les failles (dont celles des API) réellement exploitées dans des attaques en cours, avec des échéances de correction impératives.",
     icon: "bug",
@@ -81,9 +69,6 @@ export const veilleSources: VeilleSource[] = [
   {
     name: "IETF RFC 9700 — Sécurité d'OAuth 2.0",
     publisher: "IETF (Internet Engineering Task Force)",
-    frequency: "Ponctuelle : à la publication ou à la mise à jour d'un standard",
-    interest:
-      "Organisme mondial de normalisation : garantir la robustesse, l'interopérabilité et la sécurité des protocoles du Web.",
     description:
       "Standard international des bonnes pratiques OAuth 2.0 : il détaille les faiblesses d'authentification et de jetons sur les API, et les configurations indispensables pour sécuriser les accès en production.",
     icon: "book-open",

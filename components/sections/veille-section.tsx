@@ -14,8 +14,8 @@ function GroupTitle({ children }: { children: ReactNode }) {
 /**
  * Contenu de la section « Veille technologique ».
  * Trois formes distinctes : la méthode (citation avec barre dorée),
- * les thèmes (blocs numérotés) et les sources (tuiles-liens horizontales : qui publie,
- * pourquoi je la retiens, à quel rythme et avec quel intérêt).
+ * les thèmes (blocs numérotés) et les sources (tuiles-liens horizontales : qui publie
+ * et pourquoi je la retiens).
  */
 export function VeilleSection() {
   return (
@@ -118,16 +118,6 @@ export function VeilleSection() {
                       />
                     </div>
                     <p className="mt-2 text-sm leading-relaxed text-fg-secondary">{source.description}</p>
-                    <dl className="mt-4 space-y-2 border-t border-line pt-4 text-sm leading-relaxed">
-                      <div>
-                        <dt className="font-medium text-fg">Fréquence</dt>
-                        <dd className="text-fg-secondary">{source.frequency}</dd>
-                      </div>
-                      <div>
-                        <dt className="font-medium text-fg">Intérêt à publier</dt>
-                        <dd className="text-fg-secondary">{source.interest}</dd>
-                      </div>
-                    </dl>
                   </div>
                 </article>
               </Reveal>

@@ -158,15 +158,10 @@ export type VeilleTheme = {
   relatedProject?: string;
 };
 
-/** Une source de veille, décrite comme dans le tableau des sources du cours de veille. */
 export type VeilleSource = {
   name: string;
   /** Qui publie. */
   publisher: string;
-  /** Rythme de publication. */
-  frequency: string;
-  /** Intérêt de l'éditeur à publier : une veille sérieuse l'identifie toujours. */
-  interest: string;
   /** Pourquoi je l'ai retenue. */
   description: string;
   icon: IconName;
