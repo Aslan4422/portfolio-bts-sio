@@ -10,7 +10,6 @@ export type IconName =
   | "briefcase"
   | "shield-check"
   | "network"
-  | "shield-alert"
   | "brick-wall"
   | "flag"
   | "server"
@@ -18,9 +17,11 @@ export type IconName =
   | "wrench"
   | "users"
   | "radar"
-  | "newspaper"
-  | "life-buoy"
   | "plug"
+  | "scale"
+  | "siren"
+  | "bug"
+  | "book-open"
   | "layers"
   | "graduation-cap"
   | "mail";
@@ -157,9 +158,16 @@ export type VeilleTheme = {
   relatedProject?: string;
 };
 
+/** Une source de veille, décrite comme dans le tableau des sources du cours de veille. */
 export type VeilleSource = {
   name: string;
-  category: string;
+  /** Qui publie. */
+  publisher: string;
+  /** Rythme de publication. */
+  frequency: string;
+  /** Intérêt de l'éditeur à publier : une veille sérieuse l'identifie toujours. */
+  interest: string;
+  /** Pourquoi je l'ai retenue. */
   description: string;
   icon: IconName;
   url: string;

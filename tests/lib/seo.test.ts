@@ -95,7 +95,7 @@ describe("Fiche « Person » pour Google (données structurées)", () => {
   });
 
   it("liste les compétences techniques (sans les qualités humaines)", () => {
-    expect(person.knowsAbout).toContain("Wazuh (SIEM)");
+    expect(person.knowsAbout).toContain("Wazuh (tableaux de bord SIEM)");
     expect(person.knowsAbout).not.toContain("Autonomie et rigueur");
   });
 

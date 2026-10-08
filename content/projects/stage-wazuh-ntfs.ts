@@ -4,7 +4,7 @@ const project: Project = {
   slug: "stage-wazuh-ntfs",
   title: "Stage — Technicien Systèmes, Réseaux & Sécurité",
   domains: ["systemes-reseaux", "cybersecurite"],
-  pitch: "Déploiement d'un SIEM et audit des droits d'accès en entreprise réelle.",
+  pitch: "Assainissement d'un serveur de fichiers et de l'Active Directory, et tableaux de bord de sécurité Wazuh.",
   setting: "Stage en entreprise · Mai – juillet 2026",
   cover: {
     src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
@@ -21,22 +21,26 @@ const project: Project = {
   ],
 
   context:
-    "Stage de BTS SIO au sein de Lamy Liaisons (Karnov Group), à Saint-Ouen, de mai à juillet 2026. Missions d'administration et de sécurité sur un système d'information en production : droits d'accès aux serveurs de fichiers, supervision de sécurité, automatisation et support aux utilisateurs.",
+    "Stage de BTS SIO au sein de Lamy Liaisons (Karnov Group), à Saint-Ouen, de mai à juillet 2026. Missions d'administration et de sécurité sur un système d'information en production : projet d'assainissement du serveur de fichiers et de l'Active Directory, tableaux de bord de supervision de sécurité, automatisation et support aux utilisateurs.",
 
   sections: [
     {
-      title: "Audit des droits d'accès NTFS",
+      title: "Projet d'assainissement du serveur de fichiers et de l'Active Directory",
+      intro: "Présent dès le lancement de ce projet, j'y ai tenu un rôle important.",
       items: [
         "Audit, restructuration et nettoyage des autorisations d'accès NTFS sur les serveurs de fichiers.",
         "Gestion des SID orphelins et correction des droits utilisateurs.",
       ],
+      highlight: true,
     },
     {
-      title: "Intégration du SIEM Wazuh",
+      title: "Tableaux de bord de sécurité sur le SIEM Wazuh",
+      intro:
+        "Je n'ai pas mis en place Wazuh moi-même : j'ai travaillé sur la plateforme de l'entreprise, principalement en concevant des tableaux de bord.",
       items: [
-        "Intégration et configuration du SIEM Wazuh : collecte d'événements.",
+        "Conception de tableaux de bord détaillés sur l'infrastructure de l'entreprise, pour surveiller son trafic.",
+        "Suivi des menaces auxquelles l'infrastructure fait face, dont les vulnérabilités (CVE) par système d'exploitation (Linux / Windows).",
         "Création de règles d'exclusion pare-feu (filtrage NetBIOS / EventLogs Windows).",
-        "Conception de tableaux de bord de suivi des CVE par système d'exploitation (Linux / Windows).",
       ],
     },
     {
@@ -49,18 +53,18 @@ const project: Project = {
   ],
 
   results: [
-    "Droits d'accès NTFS assainis : SID orphelins traités et droits utilisateurs corrigés.",
-    "SIEM Wazuh intégré, avec des tableaux de bord de suivi des CVE par système d'exploitation.",
+    "Serveur de fichiers assaini : SID orphelins traités et droits utilisateurs corrigés.",
+    "Tableaux de bord Wazuh détaillés pour surveiller le trafic de l'entreprise et les menaces qui la visent (CVE par système d'exploitation).",
     "Tâches administratives automatisées en PowerShell.",
   ],
 
   tech: [
-    "Wazuh (SIEM)",
     "Active Directory",
+    "Sécurité NTFS",
+    "Wazuh (tableaux de bord)",
     "PowerShell",
     "Windows Server",
     "Debian/Linux",
-    "Sécurité NTFS",
     "Suivi CVE",
   ],
 
@@ -74,8 +78,8 @@ const project: Project = {
       evidence: "Assistance technique aux utilisateurs.",
     },
     {
-      competency: "b2-installer",
-      evidence: "Intégration et configuration du SIEM Wazuh (collecte d'événements).",
+      competency: "b1-projet",
+      evidence: "Projet d'assainissement du serveur de fichiers et de l'Active Directory, suivi depuis son lancement.",
     },
     {
       competency: "b2-exploiter",
@@ -91,7 +95,7 @@ const project: Project = {
     },
     {
       competency: "b3-infrastructure",
-      evidence: "Règles d'exclusion pare-feu et détection centralisée avec le SIEM.",
+      evidence: "Règles d'exclusion pare-feu et surveillance du trafic grâce aux tableaux de bord du SIEM.",
     },
   ],
 };

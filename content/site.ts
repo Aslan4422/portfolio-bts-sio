@@ -24,7 +24,7 @@ export const site = {
   role: `${roleLead} ${roleAccent}`,
   /** Présentation affichée en tête de la section « À propos ». */
   tagline:
-    "Passionné par l'administration système et la cybersécurité, j'aime comprendre comment une infrastructure fonctionne pour mieux la protéger. En BTS SIO option SISR, j'administre des environnements Windows Server, Active Directory et Linux ; en stage, j'ai mis en place le SIEM Wazuh et remis de l'ordre dans les droits d'accès d'un serveur de fichiers. Ce qui m'attire le plus : la cybersécurité défensive, repérer une attaque et la contenir avant qu'elle ne fasse des dégâts.",
+    "Passionné par l'administration système et la cybersécurité, j'aime comprendre comment une infrastructure fonctionne pour mieux la protéger. En BTS SIO option SISR, j'administre des environnements Windows Server, Active Directory et Linux ; en stage, j'ai pris part dès son lancement au projet d'assainissement d'un serveur de fichiers et de l'Active Directory, et conçu des tableaux de bord Wazuh pour surveiller l'infrastructure et les menaces qui la visent. Ce qui m'attire le plus : la cybersécurité défensive, repérer une attaque et la contenir avant qu'elle ne fasse des dégâts.",
   /**
    * Description courte du site (environ 160 caractères) : texte sous le titre
    * dans les résultats Google et dans les aperçus de liens partagés.

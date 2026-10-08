@@ -30,7 +30,7 @@ export const skillFamilies: SkillFamily[] = [
     title: "Sécurité & supervision",
     icon: "shield-check",
     items: [
-      "Wazuh (SIEM)",
+      "Wazuh (tableaux de bord SIEM)",
       "Analyse de logs",
       "Durcissement ANSSI",
       "Lynis",

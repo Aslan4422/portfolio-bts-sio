@@ -3,17 +3,16 @@ import type { VeilleSource, VeilleTheme } from "./types";
 /* Section « Veille technologique » (notée à l'oral du BTS). */
 
 export const veilleMethod =
-  "Je consulte régulièrement un socle de sources officielles et spécialisées, en priorité celles liées à mon domaine (administration d'infrastructures et cybersécurité défensive). Je pars des sources institutionnelles pour les alertes qui touchent directement les systèmes que j'administre, je suis les vulnérabilités (CVE) pour évaluer leur criticité sur mes environnements Windows et Linux, et je complète avec des médias spécialisés pour rester à jour sur les menaces émergentes, en particulier les rançongiciels. Je retiens surtout les correctifs et bonnes pratiques applicables à mes projets.";
+  "Ma veille porte sur la sécurité des API, en lien avec mon domaine : l'administration d'infrastructures et la cybersécurité défensive. Je m'appuie sur cinq sources officielles et de référence : les référentiels et standards (OWASP, IETF) pour les bonnes pratiques de conception, les alertes institutionnelles (CERT-FR, CISA) pour les vulnérabilités réellement exploitées et leurs correctifs, et la CNIL pour le cadre réglementaire. Pour chaque source, j'identifie qui publie et quel intérêt il a à le faire. Je retiens surtout les correctifs et bonnes pratiques applicables à mes projets.";
 
-/** Thèmes suivis. */
+/** Thèmes suivis (le premier est mon sujet de veille). */
 export const veilleThemes: VeilleTheme[] = [
   {
-    title: "La menace rançongiciel en 2026",
+    title: "Sécurité des API",
     description:
-      "De WannaCry (2017) au modèle Ransomware-as-a-Service de LockBit : comprendre l'évolution des attaques pour adapter la défense.",
-    tags: ["WannaCry", "LockBit", "RaaS"],
-    icon: "shield-alert",
-    relatedProject: "analyse-ransomware",
+      "Mon sujet de veille : les failles propres aux API (authentification, jetons d'accès, exposition des données) et les bonnes pratiques pour les protéger, de l'OWASP API Top 10 aux recommandations de la CNIL.",
+    tags: ["OWASP API Top 10", "OAuth 2.0", "RGPD"],
+    icon: "plug",
   },
   {
     title: "Suivi des vulnérabilités (CVE)",
@@ -33,46 +32,61 @@ export const veilleThemes: VeilleTheme[] = [
   },
 ];
 
-/** Sources consultées. */
+/** Sources consultées sur la sécurité des API. */
 export const veilleSources: VeilleSource[] = [
   {
-    name: "CERT-FR (ANSSI)",
-    category: "Cybersécurité générale",
-    description:
-      "Les alertes et bulletins officiels de l'ANSSI. Ma source de référence pour les vulnérabilités critiques et l'état de la menace, directement en lien avec mon travail de durcissement selon l'ANSSI.",
-    icon: "shield-check",
-    url: "https://www.cert.ssi.gouv.fr/",
-  },
-  {
-    name: "CVE / NVD",
-    category: "Suivi des vulnérabilités",
-    description:
-      "La base de référence des vulnérabilités connues. Je l'utilise pour évaluer la criticité d'une faille sur mes systèmes Windows et Linux, dans la continuité du suivi des CVE réalisé en stage.",
-    icon: "radar",
-    url: "https://nvd.nist.gov/",
-  },
-  {
-    name: "Bleeping Computer",
-    category: "Actualité et rançongiciels",
-    description:
-      "Média spécialisé anglophone mis à jour quotidiennement. Je le suis pour l'actualité des menaces et le suivi des groupes de rançongiciels (LockBit et autres).",
-    icon: "newspaper",
-    url: "https://www.bleepingcomputer.com/",
-  },
-  {
-    name: "No More Ransom",
-    category: "Lutte contre les rançongiciels",
-    description:
-      "Initiative d'Europol qui recense des outils de déchiffrement et des conseils de prévention. Une ressource 100 % défensive, en prolongement de mon projet d'analyse de ransomware.",
-    icon: "life-buoy",
-    url: "https://www.nomoreransom.org/fr/index.html",
-  },
-  {
     name: "OWASP API Security Top 10",
-    category: "Sécurité des API",
+    publisher: "OWASP Foundation",
+    frequency: "Pluriannuelle pour les éditions majeures, mises à jour continues sur GitHub",
+    interest:
+      "Organisation à but non lucratif : promouvoir les standards ouverts et sensibiliser, sans visée commerciale.",
     description:
-      "La référence sur les principaux risques de sécurité des API. Utile dès qu'une infrastructure expose des services, pour comprendre comment les protéger côté défense.",
+      "Référence mondiale qui classe les 10 failles critiques propres aux API, avec les scénarios d'attaque rencontrés en production et les règles de conception défensives à appliquer.",
     icon: "plug",
     url: "https://owasp.org/API-Security/",
+  },
+  {
+    name: "Recommandations de la CNIL sur les API",
+    publisher: "CNIL (France)",
+    frequency: "Périodique : textes réglementaires, délibérations et guides d'application",
+    interest:
+      "Autorité administrative indépendante : encadrer juridiquement et techniquement les échanges de données pour faire respecter le RGPD.",
+    description:
+      "Source institutionnelle française qui fixe les obligations concrètes de sécurité des API : gestion des clés et jetons d'authentification, journalisation des appels, limitation du débit et gestion des habilitations.",
+    icon: "scale",
+    url: "https://www.cnil.fr/fr/api-les-recommandations-de-la-cnil-sur-le-partage-de-donnees",
+  },
+  {
+    name: "CERT-FR — Avis et alertes de sécurité",
+    publisher: "ANSSI (France)",
+    frequency: "Quotidienne à hebdomadaire, selon l'actualité des menaces",
+    interest:
+      "Mission régalienne de cyberdéfense : alerter l'écosystème français sur les vulnérabilités actives et prévenir les compromissions critiques.",
+    description:
+      "Source nationale de référence qui signale les vulnérabilités critiques visant des infrastructures réelles (passerelles d'API, reverse proxies), avec les correctifs officiels et les mesures de contournement d'urgence.",
+    icon: "siren",
+    url: "https://www.cert.ssi.gouv.fr/avis/",
+  },
+  {
+    name: "CISA — Known Exploited Vulnerabilities (KEV)",
+    publisher: "CISA (États-Unis)",
+    frequency: "Continue : ajout dès qu'une exploitation réelle est constatée",
+    interest:
+      "Directive fédérale : obliger les administrations américaines à corriger, dans des délais imposés, les failles activement exploitées.",
+    description:
+      "Base opérationnelle qui laisse la théorie de côté : elle ne recense que les failles (dont celles des API) réellement exploitées dans des attaques en cours, avec des échéances de correction impératives.",
+    icon: "bug",
+    url: "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+  },
+  {
+    name: "IETF RFC 9700 — Sécurité d'OAuth 2.0",
+    publisher: "IETF (Internet Engineering Task Force)",
+    frequency: "Ponctuelle : à la publication ou à la mise à jour d'un standard",
+    interest:
+      "Organisme mondial de normalisation : garantir la robustesse, l'interopérabilité et la sécurité des protocoles du Web.",
+    description:
+      "Standard international des bonnes pratiques OAuth 2.0 : il détaille les faiblesses d'authentification et de jetons sur les API, et les configurations indispensables pour sécuriser les accès en production.",
+    icon: "book-open",
+    url: "https://datatracker.ietf.org/doc/rfc9700/",
   },
 ];
