@@ -21,15 +21,19 @@ const project: Project = {
   ],
 
   context:
-    "Stage de BTS SIO au sein de Lamy Liaisons (Karnov Group), à Saint-Ouen, de mai à juillet 2026. Missions d'administration et de sécurité sur un système d'information en production : projet d'assainissement du serveur de fichiers et de l'Active Directory, tableaux de bord de supervision de sécurité, automatisation et support aux utilisateurs.",
+    "Stage de BTS SIO au sein de Lamy Liaisons (Karnov Group), à Saint-Ouen, de mai à juillet 2026. Missions d'administration et de sécurité sur un système d'information en production : projet d'assainissement du serveur de fichiers et de l'Active Directory, tableaux de bord de supervision de sécurité, maintenance du parc, automatisation et support aux utilisateurs.",
 
   sections: [
     {
       title: "Projet d'assainissement du serveur de fichiers et de l'Active Directory",
       intro: "Présent dès le lancement de ce projet, j'y ai tenu un rôle important.",
       items: [
-        "Audit, restructuration et nettoyage des autorisations d'accès NTFS sur les serveurs de fichiers.",
-        "Gestion des SID orphelins et correction des droits utilisateurs.",
+        "Inventaire des partages avec TreeSize (taille, dates, propriétaires) pour décider, dossier par dossier, quoi conserver ou archiver.",
+        "Export des droits NTFS avec DumpSec et repérage des groupes réellement utilisés dans ces droits.",
+        "Cartographie des groupes Active Directory : export des appartenances, carte des groupes imbriqués et croisement avec les droits du serveur (Excel : RECHERCHEV, INDEX/EQUIV, tableaux croisés dynamiques).",
+        "Repérage des groupes vides ou inutilisés (ADManager Plus) et décision groupe par groupe : vider, conserver ou supprimer.",
+        "Préparation des commandes PowerShell (module Active Directory) de nettoyage, avec une sauvegarde préalable des appartenances pour pouvoir revenir en arrière.",
+        "Contrôle des droits après archivage : gestion des SID orphelins et correction des droits utilisateurs.",
       ],
       highlight: true,
     },
@@ -38,24 +42,33 @@ const project: Project = {
       intro:
         "Je n'ai pas mis en place Wazuh moi-même : j'ai travaillé sur la plateforme de l'entreprise, principalement en concevant des tableaux de bord.",
       items: [
-        "Conception de tableaux de bord détaillés sur l'infrastructure de l'entreprise, pour surveiller son trafic.",
-        "Suivi des menaces auxquelles l'infrastructure fait face, dont les vulnérabilités (CVE) par système d'exploitation (Linux / Windows).",
-        "Création de règles d'exclusion pare-feu (filtrage NetBIOS / EventLogs Windows).",
+        "Conception de 5 tableaux de bord reliés entre eux : vue d'ensemble des alertes, tentatives de connexion (géolocalisation) et suivi des vulnérabilités (CVE) global, Windows et Linux.",
+        "Filtres et requêtes DQL (par système d'exploitation, exclusion des paquets du noyau Linux) pour des vues plus lisibles.",
+        "Analyse des alertes bruyantes, avec une méthode documentée sous Excel : le bruit venait surtout du pare-feu Windows et des annonces NetBIOS.",
+        "Création de règles d'exclusion pare-feu (filtrage NetBIOS / EventLogs Windows) pour garder visibles les alertes utiles.",
       ],
     },
     {
-      title: "Automatisation et support",
+      title: "Maintenance du parc et support",
+      items: [
+        "Démontage d'ordinateurs portables HP et remplacement de composants (stockage, écrans…).",
+        "Maintien en conditions opérationnelles du parc et assistance technique aux utilisateurs.",
+      ],
+    },
+    {
+      title: "Automatisation et documentation",
       items: [
         "Automatisation de tâches administratives via scripts PowerShell.",
-        "Maintien en conditions opérationnelles du parc et assistance technique aux utilisateurs.",
+        "Documentation technique dans Obsidian : fonctionnement de Wazuh, parcours d'un journal (collecte, décodeur, règles, tableau de bord) et rôle des équipements de l'infrastructure.",
       ],
     },
   ],
 
   results: [
-    "Serveur de fichiers assaini : SID orphelins traités et droits utilisateurs corrigés.",
-    "Tableaux de bord Wazuh détaillés pour surveiller le trafic de l'entreprise et les menaces qui la visent (CVE par système d'exploitation).",
-    "Tâches administratives automatisées en PowerShell.",
+    "Serveur de fichiers assaini : dossiers inventoriés puis conservés ou archivés, groupes AD inutilisés repérés, SID orphelins traités et droits utilisateurs corrigés.",
+    "5 tableaux de bord Wazuh pour surveiller les alertes, les connexions et les vulnérabilités (CVE) des systèmes Windows et Linux.",
+    "Alertes bruyantes analysées et filtrées par des règles d'exclusion.",
+    "Portables HP remis en état et tâches administratives automatisées en PowerShell.",
   ],
 
   tech: [
@@ -63,15 +76,20 @@ const project: Project = {
     "Sécurité NTFS",
     "Wazuh (tableaux de bord)",
     "PowerShell",
+    "TreeSize",
+    "DumpSec",
+    "ADManager Plus",
+    "Excel (TCD)",
     "Windows Server",
     "Debian/Linux",
-    "Suivi CVE",
+    "Obsidian",
+    "Matériel HP",
   ],
 
   bts: [
     {
       competency: "b1-patrimoine",
-      evidence: "Maintien en conditions opérationnelles du parc informatique.",
+      evidence: "Maintenance matérielle des portables HP (stockage, écrans) et maintien en conditions opérationnelles du parc.",
     },
     {
       competency: "b1-incidents",
@@ -79,15 +97,16 @@ const project: Project = {
     },
     {
       competency: "b1-projet",
-      evidence: "Projet d'assainissement du serveur de fichiers et de l'Active Directory, suivi depuis son lancement.",
+      evidence:
+        "Projet d'assainissement du serveur de fichiers et de l'Active Directory, suivi depuis son lancement : inventaire, analyse, décisions groupe par groupe.",
     },
     {
       competency: "b2-exploiter",
-      evidence: "Supervision via des tableaux de bord Wazuh et automatisation PowerShell.",
+      evidence: "Supervision via 5 tableaux de bord Wazuh et automatisation PowerShell.",
     },
     {
       competency: "b3-securiser",
-      evidence: "Restructuration des droits NTFS et correction des droits utilisateurs.",
+      evidence: "Restructuration des droits NTFS, nettoyage des groupes AD inutilisés et correction des droits utilisateurs.",
     },
     {
       competency: "b3-dic",
@@ -95,7 +114,7 @@ const project: Project = {
     },
     {
       competency: "b3-infrastructure",
-      evidence: "Règles d'exclusion pare-feu et surveillance du trafic grâce aux tableaux de bord du SIEM.",
+      evidence: "Analyse des alertes bruyantes et règles d'exclusion pour garder visibles les vraies menaces.",
     },
   ],
 };

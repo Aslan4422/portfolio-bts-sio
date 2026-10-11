@@ -12,6 +12,7 @@ export const skillFamilies: SkillFamily[] = [
       "Linux (Debian, Ubuntu)",
       "Proxmox VE",
       "VMware",
+      "Maintenance matérielle (PC portables)",
     ],
   },
   {
@@ -43,12 +44,21 @@ export const skillFamilies: SkillFamily[] = [
   {
     title: "Scripting & automatisation",
     icon: "code",
-    items: ["PowerShell", "Bash", "Python"],
+    items: ["PowerShell (module Active Directory)", "Bash", "Python"],
   },
   {
     title: "Outils",
     icon: "wrench",
-    items: ["Kali Linux", "Nmap", "Pare-feu Windows", "Microsoft Excel"],
+    items: [
+      "Kali Linux",
+      "Nmap",
+      "Pare-feu Windows",
+      "TreeSize",
+      "DumpSec",
+      "ADManager Plus",
+      "Microsoft Excel (tableaux croisés dynamiques)",
+      "Obsidian",
+    ],
   },
   {
     title: "Qualités",
